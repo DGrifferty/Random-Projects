@@ -1,5 +1,7 @@
 import random
 
+# in progress
+
 cash_present = {50 : random.randint(0,1),
                 20 :  random.randint(1,5),
                 10 : random.randint(3, 10),
