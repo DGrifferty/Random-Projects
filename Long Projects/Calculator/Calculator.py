@@ -296,7 +296,7 @@ def solve(equ):
             equ[i - 1:i + 2] = [equ[i - 1] - equ[i + 1]]
             continue
         elif len(equ) == 1:
-            return int(equ[0])
+            return round(equ[0], 9)
         else:
             continue
 
@@ -322,7 +322,7 @@ if __name__ == '__main__':
                 print('This program will calculate the sum of a user'
                       'enter list of numbers separated by spaces.\n'
                       'It can calculate equations containing +, -, *, / (), ^ only. \n'
-                      'You can assign variables using = to use in later question')
+                      'You can assign variables using = to use in a later equation.')
                 continue
             else:
                 print('Unknown command')
