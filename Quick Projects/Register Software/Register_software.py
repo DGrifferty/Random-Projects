@@ -1,49 +1,55 @@
 import random
 
+
 # in progress
 
-cash_present = {50 : random.randint(0,1),
-                20 :  random.randint(1,5),
-                10 : random.randint(3, 10),
-                5 :  random.randint(4, 10),
-                2 : random.randint(6, 10),
-                1 : random.randint(10, 20),
-                0.50 : random.randint(10, 20),
-                0.20 : random.randint(10, 30),
-                0.1 : random.randint(10, 25),
-                0.05 : random.randint(10, 25),
-                0.02 : random.randint(10,25),
-                0.01 : random.randint(10, 25)
-                }
+def generate_cash(denominations):
+    cash_present = {}
+    for denom in denominations:
+        if 5 < denom <= 10:
+            cash_present[denom] = int(100 / denom)
+        if 1 < denom <= 5:
+            cash_present[denom] = int(10 / denom)
+        else:
+            cash_present[denom] = int(1 / denom)
+    return cash_present
 
-def cash(cash_present, change):
 
-    if change >= 50 and cash_present(50) > 1:
+def cash(cash_present, change_required):
+    change_to_give = []
+    while change_required > 0:
+        for denom in cash_present.keys():
+            if change_required >= denom:
+                change_required -= denom
+                change_to_give.append(denom)
+                break
+    return change_to_give
 
-    elif change >= 20 and cash_present(50) > 1:
 
-    elif change >= 10 and cash_present(50) > 1:
+def print_change_to_give(ctg):
+    ctg.sort()
+    instruction = ''
+    for element in ctg:
+        if element > 1:
+            instruction += f'{ctg.count(element)} * £{element}'
+            ctg[:] = [i for i in ctg if i != element]
+            print(instruction)
+        else:
+            instruction += f'{ctg.count(element)} * {element * 100}p'
+            ctg[:] = [i for i in ctg if i != element]
 
-    elif change >= 5 and cash_present(50) > 1:
+        if len(ctg) != 0:
+            instruction += ', '
 
-    elif change >= 2 and cash_present(50) > 1:
+    return instruction
 
-    elif change >= 0.5 and cash_present(50) > 1:
-
-    elif change >= 0.1 and cash_present(50) > 1:
-
-    elif change >= 0.05 and cash_present(50) > 1:
-
-    elif change >= 0.02 and cash_present(50) > 1:
-
-    elif change >= 0.01 and cash_present(50) > 1:
-
-1
 
 if __name__ == '__main__':
+    denominations = [50, 20, 10, 5, 2, 1, 0.5, 0.2, 0.1, 0.05, 0.02, 0.01]
+    cost = 20
+    cash_present = generate_cash(denominations)
 
-    while True:
+    print(cash_present)
+    print(cash(cash_present, 10))
 
-
-
-
+    print(print_change_to_give(cash(cash_present, 10)))
