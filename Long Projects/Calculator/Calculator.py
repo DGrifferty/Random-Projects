@@ -121,11 +121,11 @@ def check_input(user_input, variables):
 
         elif element == 'av':
             if index != len(conv_equ) - 1:
-                if conv_equ[index + 1] not in 's':  # right
+                if conv_equ[index + 1] not in 's)':  # right
                     E = 'Bad symbol to right of number'
                     return False, E
             if index != 0:
-                if conv_equ[index - 1] not in 's':  # left
+                if conv_equ[index - 1] not in 's(':  # left
                     E = 'Bad symbol to left of number'
                     return False, E
 
